@@ -3,11 +3,11 @@ package com.felipmora47.springboot.di.app.springboot_di.repositories;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.felipmora47.springboot.di.app.springboot_di.models.Product;
 
-@Component
+@Repository
 public class ProductRepositoryImpl implements IProductRepository {
 
 

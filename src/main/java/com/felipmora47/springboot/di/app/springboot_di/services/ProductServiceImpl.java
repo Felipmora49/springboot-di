@@ -3,16 +3,18 @@ package com.felipmora47.springboot.di.app.springboot_di.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.felipmora47.springboot.di.app.springboot_di.models.Product;
 import com.felipmora47.springboot.di.app.springboot_di.repositories.IProductRepository;
 //import com.felipmora47.springboot.di.app.springboot_di.repositories.ProductRepositoryImpl;
 
-@Component
+@Service
 public class ProductServiceImpl implements IProductService {
+
+
+    private IProductRepository repository;
 
     //Instancia de la clase ProductRepositoryImpl
    /*  private ProductRepositoryImpl repository = new ProductRepositoryImpl(); */
@@ -22,8 +24,21 @@ public class ProductServiceImpl implements IProductService {
     private ProductRepositoryImpl repository; */
 
     //Inyección de dependencias de la interfaz IProductRepository
-    @Autowired
-    private IProductRepository repository; 
+    /* @Autowired */
+   /*  private IProductRepository repository;  */
+
+    
+    //Inyección de dependecias atravez de un setter
+    /*  @Autowired
+    public void setRepository(IProductRepository repository) {
+        this.repository = repository;
+    } */
+
+    
+    //Inyección de dependecias atravez de un constructor y no es necesario el @Autowired
+    public ProductServiceImpl(IProductRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public List<Product> findAll(){
@@ -42,9 +57,10 @@ public class ProductServiceImpl implements IProductService {
         }).collect(Collectors.toList());
     }
 
+
     @Override
     public Product findById (Long id){
         return repository.findById(id);
     }
+
 }
- 
