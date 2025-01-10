@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.felipmora47.springboot.di.app.springboot_di.models.Product;
-import com.felipmora47.springboot.di.app.springboot_di.services.ProductService;
+import com.felipmora47.springboot.di.app.springboot_di.services.IProductService;
+//import com.felipmora47.springboot.di.app.springboot_di.services.ProductServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api")
 public class SomeController {
     
-    private ProductService service = new ProductService();
+
+    //Instancia de la clase ProductServiceImpl
+    /*   private ProductServiceImpl service = new ProductServiceImpl();*/
+
+    //Inyección de dependencias de la clase ProductServiceImplvb  
+    /* @Autowired
+    private ProductServiceImpl service; */
+
+
+    //Inyección de dependencias de la interfaz IProductService
+    @Autowired
+    private IProductService service;
+
+
+
 
     @GetMapping("")
     public List<Product> list(){
